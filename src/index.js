@@ -9,9 +9,10 @@ var {Gmaps, Marker} = ReactGMaps
 // Movie data
 var movieData = require('./movies.json')
 var theatres = require('./theatres.json')
+var TheatreMap = require('./theatresmap')
 
 // There should really be some JSON-formatted data in movies.json, instead of an empty array.
-// I started writing this command to extract the data from the learn-sql workspace 
+// I started writing this command to extract the data from the learn-sql workspace
 // on C9, but it's not done yet :) You must have the csvtojson command installed for this to work.
 // npm install -g csvtojson
 // sqlite3 -csv -header movies.sqlite3 'select "imdbID" as id, "title" from movies' | csvtojson --maxRowLength=0 > movies.json
@@ -19,8 +20,8 @@ var theatres = require('./theatres.json')
 // Firebase
 var Rebase = require('re-base')
 var base = Rebase.createClass({
-  apiKey: "AIzaSyCEU6ERSIuf1WBkVbsYUVha6YPRASjp69U",   // replace with your Firebase application's API key
-  databaseURL: "https://bflix2-27a41.firebaseio.com/", // replace with your Firebase application's database URL
+  apiKey: "AIzaSyA6SMal0JxsLDxHjeM1KkBSQdit4leLWRU",   // replace with your Firebase application's API key
+  databaseURL: "https://final-49996.firebaseapp.com/", // replace with your Firebase application's database URL
 })
 
 var MovieList = React.createClass({
@@ -183,11 +184,7 @@ var App = React.createClass({
   },
   renderMainSection: function() {
     if (this.state.currentView === 'map') {
-      return (
-        <div className="col-sm-12">
-          <h3>This would be an awfully good place to put a map.</h3>
-        </div>
-      )
+      return <TheatreMap />
     } else {
       return (
         <div>
